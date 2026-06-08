@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Aotearoa Adventure Gear</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom-style.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; color: #777; }
+        .wireframe-img { background-color: #f8f8f8; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; }
+        .star-rating { color: #ccc; font-size: 0.85rem; }
+        .star-rating .filled { color: #f39c12; }
+        .category-card { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header class="border-bottom py-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white container">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="40">
+                </a>
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 me-4">
+                        <li class="nav-item"><a class="nav-link text-muted" href="index.html">Home</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="about.html">About</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-bold" href="shop.html">Shop</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="help.html">Help</a></li>
+                    </ul>
+                    <a href="cart.html" class="btn btn-dark"><i class="bi bi-cart3 me-2"></i>Your Cart</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        <section class="text-center mb-5">
+            <h1 class="display-5 mb-4 fw-light">Tagline describing your e-shop</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="d-flex gap-2">
+                        <input class="form-control form-control-lg" type="search" placeholder="Search...">
+                        <button class="btn btn-dark px-4" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="mb-5">
+            <h2 class="text-center fw-light mb-2">Featured Categories</h2>
+            <p class="text-center text-muted small mb-5 max-w-600 mx-auto">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-3 category-card">
+                    <div class="wireframe-img ratio ratio-3x4 rounded mb-2"><img src="assets/icon_placeholder.png" class="img-fluid p-4" alt=""></div>
+                    <span class="text-uppercase small tracking-wider">Category</span>
+                </div>
+                <div class="col-6 col-md-3 category-card">
+                    <div class="wireframe-img ratio ratio-3x4 rounded mb-2"><img src="assets/icon_placeholder.png" class="img-fluid p-4" alt=""></div>
+                    <span class="text-uppercase small tracking-wider">Category</span>
+                </div>
+                <div class="col-6 col-md-3 category-card">
+                    <div class="wireframe-img ratio ratio-3x4 rounded mb-2"><img src="assets/icon_placeholder.png" class="img-fluid p-4" alt=""></div>
+                    <span class="text-uppercase small tracking-wider">Category</span>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="bg-dark text-white rounded d-flex flex-column align-items-center justify-content-center h-100 p-4 text-center min-vh-250">
+                        <h4 class="fw-light mb-3">Shop Now</h4>
+                        <a href="#product-listings" class="btn btn-outline-light btn-sm px-3">View All</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="row g-4 align-items-center mb-5 bg-light rounded p-4 mx-1">
+            <div class="col-md-4 text-center">
+                <img src="assets/icon_placeholder_large.png" alt="Promo Image" class="img-fluid" style="max-height: 120px;">
+            </div>
+            <div class="col-md-8">
+                <h3 class="fw-light mb-2">Newsletter</h3>
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control" placeholder="Email Address" required>
+                    <button type="submit" class="btn btn-secondary px-4">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="product-listings" class="row g-5">
+            <div class="col-lg-4 text-start d-flex flex-column justify-content-between py-2">
+                <div>
+                    <h2 class="display-6 fw-normal text-dark mb-3">Header Regarding Your Product</h2>
+                    <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                </div>
+                <button class="btn btn-dark btn-lg align-self-start mt-3">Browse All</button>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="row row-cols-1 row-cols-sm-2 g-4">
+                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
+                        <div>
+                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
+                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="fw-bold text-dark">300</span></div>
+                        </div>
+                    </div>
+                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
+                        <div>
+                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
+                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
+                        </div>
+                    </div>
+                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
+                        <div>
+                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
+                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
+                        </div>
+                    </div>
+                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
+                        <div>
+                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
+                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
+                        </div>
+                    </div>
+                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
+                        <div>
+                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
+                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
+                        </div>
+                    </div>
+                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
+                        <div>
+                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
+                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-top py-4 bg-white mt-5">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 text-muted small">
+            <div class="d-flex gap-3 text-uppercase">
+                <a href="index.html" class="text-muted text-decoration-none">Home</a> | 
+                <a href="about.html" class="text-muted text-decoration-none">About</a> | 
+                <a href="shop.html" class="text-muted text-decoration-none">Shop</a> | 
+                <a href="help.html" class="text-muted text-decoration-none">Help</a>
+            </div>
+            <div>&copy; Aotearoa Adventure Gear</div>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Aotearoa Adventure Gear</title>
+    
+    <!-- BOOTSTRAP LINK -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CUSTOM CSS LINK -->
+    <link href="css/custom-style.css" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Open Sans', sans-serif; color: #777; }
+        .hero-tagline h1 { font-size: 2.5rem; font-weight: 300; }
+        .wireframe-img { background-color: #f8f8f8; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; }
+        .star-rating { color: #ccc; }
+        .star-rating .filled { color: #f39c12; }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         HEADER & NAVBAR SECTION
+         ============================================ -->
+    <header class="border-bottom py-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white container">
+            <div class="container-fluid d-flex justify-content-between">
+                
+                <!-- Brand/Logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="40">
+                </a>
+
+                <!-- Search Bar (Ref: image_0.png top left, center) -->
+                <form class="d-flex mx-auto" style="width: 300px;">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                        <input class="form-control border-start-0" type="search" placeholder="Search..." aria-label="Search">
+                    </div>
+                </form>
+
+                <!-- Navigation Links & Cart Button (Ref: image_0.png top right) -->
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 me-4 text-muted">
+                        <li class="nav-item"><a class="nav-link text-muted" href="index.html">Home</a></li>
+                        <li class="nav-item text-muted p-2 d-none d-lg-block">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="about.html">About</a></li>
+                        <li class="nav-item text-muted p-2 d-none d-lg-block">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="shop.html">Shop</a></li>
+                        <li class="nav-item text-muted p-2 d-none d-lg-block">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="help.html">Help</a></li>
+                    </ul>
+                    
+                    <button class="btn btn-dark" type="button">
+                        <i class="bi bi-cart3 me-2"></i>Your Cart
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- ============================================
+         HERO SECTION / HERO CAROUSEL
+         (Task 2a: Needs to be a carousel)
+         ============================================ -->
+    <main class="container py-5">
+        <section class="text-center hero-tagline mb-5">
+            <h1 class="mb-4 text-muted">Tagline describing your e-shop</h1>
+            
+            <div class="row justify-content-center mb-4 g-3">
+                <!-- Example Hero Images (Ref: image_0.png row below tagline) -->
+                <div class="col-6 col-md-3">
+                    <div class="wireframe-img ratio ratio-1x1 rounded p-3">
+                        <img src="assets/icon_placeholder.png" alt="Hero Featured 1" class="img-fluid p-5">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="wireframe-img ratio ratio-1x1 rounded p-3">
+                        <img src="assets/icon_placeholder.png" alt="Hero Featured 2" class="img-fluid p-5">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="wireframe-img ratio ratio-1x1 rounded p-3">
+                        <img src="assets/icon_placeholder.png" alt="Hero Featured 3" class="img-fluid p-5">
+                    </div>
+                </div>
+            </div>
+            
+            <a href="shop.html" class="btn btn-dark btn-lg">Shop Now</a>
+        </section>
+
+        <!-- Divider (Ref: image_0.png line below Shop Now) -->
+        <hr class="my-5 opacity-25">
+
+
+        <!-- ============================================
+             FEATURED PRODUCTS (MICRODATA)
+             ============================================ -->
+        <section class="mb-5">
+            <h2 class="text-center text-muted h1 font-weight-light mb-5">Featured Products</h2>
+            
+            <div class="row g-4 justify-content-center align-items-center">
+                
+                <!-- Left Nav Arrow (Ref: image_0.png) -->
+                <div class="col-auto d-none d-md-block text-muted h1 cursor-pointer">
+                    <i class="bi bi-caret-left-fill"></i>
+                </div>
+
+                <!-- Product 1 (Ref: image_0.png Featured Products Row) -->
+                <div class="col-md-5" itemscope itemtype="https://schema.org/Product">
+                    <div class="wireframe-img ratio ratio-4x3 rounded mb-3">
+                        <img itemprop="image" src="assets/icon_placeholder_large.png" alt="Featured Product 1" class="img-fluid p-5">
+                    </div>
+                    <div class="text-center">
+                        <h4 itemprop="name" class="text-muted small">PRODUCT NAME</h4>
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                            <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h5">300</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 (Ref: image_0.png Featured Products Row) -->
+                <div class="col-md-5" itemscope itemtype="https://schema.org/Product">
+                    <div class="wireframe-img ratio ratio-4x3 rounded mb-3">
+                        <img itemprop="image" src="assets/icon_placeholder_large.png" alt="Featured Product 2" class="img-fluid p-5">
+                    </div>
+                    <div class="text-center">
+                        <h4 itemprop="name" class="text-muted small">PRODUCT NAME</h4>
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                            <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h5">300</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Nav Arrow (Ref: image_0.png) -->
+                <div class="col-auto d-none d-md-block text-muted h1 cursor-pointer">
+                    <i class="bi bi-caret-right-fill"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider (Ref: image_0.png line below Featured Products) -->
+        <hr class="my-5 opacity-25">
+
+
+        <!-- ============================================
+             NEWSLETTER SUBSCRIPTION
+             ============================================ -->
+        <section class="row align-items-center mb-5 g-4 py-4">
+            <div class="col-md-6 text-muted">
+                <h2 class="h1">Newsletter</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.</p>
+            </div>
+            <div class="col-md-6">
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control form-control-lg border-muted" placeholder="Email Address" required>
+                    <button type="submit" class="btn btn-lg btn-light text-muted border border-muted px-4">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Divider (Ref: image_0.png line below Newsletter) -->
+        <hr class="my-5 opacity-25">
+
+
+        <!-- ============================================
+             GRID PRODUCTS (MICRODATA & STAR RATING)
+             ============================================ -->
+        <section class="mb-5 row g-4">
+            
+            <!-- Large Product (Ref: image_0.png Left Grid) -->
+            <div class="col-md-5" itemscope itemtype="https://schema.org/Product">
+                <div class="wireframe-img ratio ratio-1x1 rounded mb-3">
+                    <img itemprop="image" src="assets/icon_placeholder_large.png" alt="Large Grid Product" class="img-fluid p-5">
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 itemprop="name" class="text-muted small m-0">PRODUCT NAME</h4>
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                            <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h5">300</span>
+                        </div>
+                    </div>
+                    <div class="star-rating h5">
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smaller Products Grid (Ref: image_0.png Right Grid 2x2) -->
+            <div class="col-md-7">
+                <div class="row row-cols-2 g-4">
+                    
+                    <!-- Grid Product 1 -->
+                    <div class="col" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img ratio ratio-16x9 rounded mb-2">
+                            <img itemprop="image" src="assets/icon_placeholder.png" alt="Grid Product 1" class="img-fluid p-3">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="small">
+                                <h4 itemprop="name" class="text-muted small m-0" style="font-size: 0.8rem;">PRODUCT NAME</h4>
+                                <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h6">300</span>
+                                </div>
+                            </div>
+                            <div class="star-rating" style="font-size: 0.8rem;">
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid Product 2 -->
+                    <div class="col" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img ratio ratio-16x9 rounded mb-2">
+                            <img itemprop="image" src="assets/icon_placeholder.png" alt="Grid Product 2" class="img-fluid p-3">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="small">
+                                <h4 itemprop="name" class="text-muted small m-0" style="font-size: 0.8rem;">PRODUCT NAME</h4>
+                                <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h6">300</span>
+                                </div>
+                            </div>
+                            <div class="star-rating" style="font-size: 0.8rem;">
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid Product 3 -->
+                    <div class="col" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img ratio ratio-16x9 rounded mb-2">
+                            <img itemprop="image" src="assets/icon_placeholder.png" alt="Grid Product 3" class="img-fluid p-3">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="small">
+                                <h4 itemprop="name" class="text-muted small m-0" style="font-size: 0.8rem;">PRODUCT NAME</h4>
+                                <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h6">300</span>
+                                </div>
+                            </div>
+                            <div class="star-rating" style="font-size: 0.8rem;">
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid Product 4 -->
+                    <div class="col" itemscope itemtype="https://schema.org/Product">
+                        <div class="wireframe-img ratio ratio-16x9 rounded mb-2">
+                            <img itemprop="image" src="assets/icon_placeholder.png" alt="Grid Product 4" class="img-fluid p-3">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="small">
+                                <h4 itemprop="name" class="text-muted small m-0" style="font-size: 0.8rem;">PRODUCT NAME</h4>
+                                <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="h6">300</span>
+                                </div>
+                            </div>
+                            <div class="star-rating" style="font-size: 0.8rem;">
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider (Ref: image_0.png line below Grid Products) -->
+        <hr class="my-5 opacity-25">
+
+
+        <!-- ============================================
+             ABOUT SHOP DESCRIPTION
+             ============================================ -->
+        <section class="text-center py-4 mb-5 text-muted">
+            <h2 class="h1 font-weight-light mb-4">About Your Shop</h2>
+            <div class="row justify-content-center">
+                <p class="col-md-9 lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+            </div>
+        </section>
+        
+    </main>
+
+
+    <!-- ============================================
+         FOOTER SECTION
+         ============================================ -->
+    <footer class="border-top py-5 bg-white">
+        <div class="container text-muted small">
+            
+            <div class="row g-4 mb-4">
+                
+                <!-- Footer Logo & Address (Ref: image_0.png bottom left) -->
+                <div class="col-md-4">
+                    <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="30" class="mb-3">
+                    <p>1717 Harrison St, San Francisco,<br> CA 94103, USA</p>
+                </div>
+
+                <!-- Footer Menu Grid (Ref: image_0.png bottom right) -->
+                <div class="col-md-8">
+                    <div class="row row-cols-2 row-cols-sm-4 text-uppercase">
+                        
+                        <div class="col">
+                            <h6 class="text-dark">MAIN MENU</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="index.html" class="text-muted text-capitalize text-decoration-none">Home</a></li>
+                                <li><a href="about.html" class="text-muted text-capitalize text-decoration-none">About</a></li>
+                                <li><a href="shop.html" class="text-muted text-capitalize text-decoration-none">Shop</a></li>
+                                <li><a href="help.html" class="text-muted text-capitalize text-decoration-none">Help</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col">
+                            <h6 class="text-dark">COMPANY</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none">The Company</a></li>
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none">Careers</a></li>
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none">Press</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col">
+                            <h6 class="text-dark">DISCOVER</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none">The Team</a></li>
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none">Our History</a></li>
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none">Brand Motto</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col">
+                            <h6 class="text-dark">FIND US ON</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none"><i class="bi bi-facebook me-2"></i>Facebook</a></li>
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none"><i class="bi bi-twitter me-2"></i>Twitter</a></li>
+                                <li><a href="#" class="text-muted text-capitalize text-decoration-none"><i class="bi bi-instagram me-2"></i>Instagram</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-footer (Ref: image_0.png bottom copyright line) -->
+            <div class="border-top pt-3 text-start">
+                <i class="bi bi-copyright"></i> Your Company Name
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- LINK TO BOOTSTRAP JS BUNDLE -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Links for Task 2 and 3 validation -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

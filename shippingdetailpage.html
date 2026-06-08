@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Details - Aotearoa Adventure Gear</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom-style.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; color: #777; background-color: #ffffff; }
+        .wireframe-img { background-color: #f8f8f8; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; }
+        
+        /* Step Process Navigation Styles */
+        .step-link { color: #b0b0b0 !important; font-size: 1.2rem; font-weight: 300; text-decoration: none; position: relative; padding-bottom: 10px; }
+        .step-link.active { color: #333333 !important; font-weight: 400; }
+        .step-link.active::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: #333333; }
+        
+        /* Shipping Selection Box Styling */
+        .shipping-method-card { border: 1px solid #e0e0e0; border-radius: 4px; padding: 1.25rem; background-color: #ffffff; display: flex; align-items: flex-start; cursor: pointer; transition: background-color 0.2s ease; }
+        .shipping-method-card:hover { background-color: #fcfcfc; }
+        .shipping-method-card input[type="radio"] { margin-top: 0.25rem; }
+    </style>
+</head>
+<body>
+
+    <header class="border-bottom py-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white container">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="40">
+                </a>
+                
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 me-4">
+                        <li class="nav-item"><a class="nav-link text-muted" href="index.html">Home</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="about.html">About</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="shop.html">Shop</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="help.html">Help</a></li>
+                    </ul>
+                    <a href="cart.html" class="btn btn-dark">
+                        <i class="bi bi-cart3 me-2"></i>Your Cart
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        
+        <section class="row border-bottom pb-3 mb-5 text-center g-2">
+            <div class="col-4">
+                <a href="cart.html" class="step-link text-muted d-inline-block">1. Shopping Cart</a>
+            </div>
+            <div class="col-4">
+                <a href="shipping.html" class="step-link active d-inline-block">2. Shipping Details</a>
+            </div>
+            <div class="col-4">
+                <span class="step-link d-inline-block">3. Payment Options</span>
+            </div>
+        </section>
+
+        <form id="shippingForm" novalidate>
+            <div class="row g-5">
+                
+                <div class="col-lg-8">
+                    <h2 class="h4 fw-light text-dark mb-4 pb-2 border-bottom">Shipping Details</h2>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <input type="text" id="firstName" class="form-control form-control-lg fs-6" placeholder="First Name" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" id="lastName" class="form-control form-control-lg fs-6" placeholder="Last Name" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" id="address1" class="form-control form-control-lg fs-6" placeholder="Address" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" id="address2" class="form-control form-control-lg fs-6" placeholder="Address 2">
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="country" class="form-select form-select-lg fs-6 text-muted" required>
+                                <option value="" selected disabled>Country</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="AU">Australia</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" id="city" class="form-control form-control-lg fs-6" placeholder="City" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" id="zipCode" class="form-control form-control-lg fs-6" placeholder="Zip/Postal Code" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="tel" id="phone" class="form-control form-control-lg fs-6" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 pt-2 mb-5">
+                        <div class="col-sm-6">
+                            <label class="shipping-method-card h-100 w-100 m-0" for="shippingFree">
+                                <input class="form-check-input me-3 flex-shrink-0" type="radio" name="shippingMethod" id="shippingFree" value="0" checked>
+                                <span class="small d-block">
+                                    <strong class="d-block text-dark mb-1">Free Shipping</strong>
+                                    <span class="text-muted">Between 2 - 5 working days</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="shipping-method-card h-100 w-100 m-0" for="shippingExpress">
+                                <input class="form-check-input me-3 flex-shrink-0" type="radio" name="shippingMethod" id="shippingExpress" value="20">
+                                <span class="small d-block">
+                                    <strong class="d-block text-dark mb-1">Next Day Delivery - $20</strong>
+                                    <span class="text-muted">24 hours from checkout</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 border-top pt-4">
+                        <button type="submit" class="btn btn-dark px-5 py-2">Next</button>
+                        <a href="cart.html" class="btn btn-light border text-muted px-5 py-2">Cancel</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="p-4 bg-light rounded border">
+                        <h3 class="h5 text-dark fw-light mb-4 text-uppercase tracking-wide">Summary</h3>
+                        
+                        <div class="d-flex flex-column gap-3 mb-4">
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="wireframe-img rounded flex-shrink-0" style="width: 65px; height: 65px;">
+                                    <img src="assets/icon_placeholder.png" width="24" alt="Product Thumbnail">
+                                </div>
+                                <div class="small">
+                                    <span class="d-block text-dark fw-bold mb-1" style="font-size: 0.8rem;">PRODUCT NAME</span>
+                                    <span class="text-muted">$300</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="wireframe-img rounded flex-shrink-0" style="width: 65px; height: 65px;">
+                                    <img src="assets/icon_placeholder.png" width="24" alt="Product Thumbnail">
+                                </div>
+                                <div class="small">
+                                    <span class="d-block text-dark fw-bold mb-1" style="font-size: 0.8rem;">PRODUCT NAME</span>
+                                    <span class="text-muted">$300</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-top pt-3 mb-4">
+                            <div class="d-flex justify-content-between align-items-center text-muted small collapsed" data-bs-toggle="collapse" data-bs-target="#voucherCollapse" style="cursor: pointer;">
+                                <span class="fw-bold" style="font-size: 0.75rem;">HAVE A VOUCHER?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="collapse mt-2" id="voucherCollapse">
+                                <input type="text" class="form-control form-control-sm text-uppercase" placeholder="Enter Voucher Code">
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">SUBTOTAL</span>
+                            <span class="text-dark fw-bold">$600</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">SHIPPING</span>
+                            <span class="text-dark fw-bold text-uppercase">Free</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 small">
+                            <span class="text-muted">TAXES</span>
+                            <span class="text-dark fw-bold">$13</span>
+                        </div>
+                        
+                        <hr class="my-3">
+                        
+                        <div class="d-flex justify-content-between align-items-end pt-2">
+                            <span class="h5 m-0 text-dark fw-light">TOTAL</span>
+                            <span class="h4 m-0 text-dark fw-bold">$613</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+    </main>
+    
+<footer class="border-top py-4 bg-white mt-5">
+        <div class="container d-flex flex-column align-items-center text-center gap-2 text-muted small">
+            
+            <div class="d-flex gap-3 text-uppercase justify-content-center flex-wrap">
+                <a href="index.html" class="text-muted text-decoration-none">Home</a> | 
+                <a href="about.html" class="text-muted text-decoration-none">About</a> | 
+                <a href="shop.html" class="text-muted text-decoration-none">Shop</a> | 
+                <a href="help.html" class="text-muted text-decoration-none">Help</a>
+            </div>
+            
+            <div class="mt-1">&copy; Aotearoa Adventure Gear</div>
+            
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

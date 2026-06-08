@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Options - Aotearoa Adventure Gear</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom-style.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; color: #777; background-color: #ffffff; }
+        .wireframe-img { background-color: #f8f8f8; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; }
+        
+        /* Step Process Navigation Styles */
+        .step-link { color: #b0b0b0; font-size: 1.2rem; font-weight: 300; text-decoration: none; position: relative; padding-bottom: 10px; display: inline-block; }
+        .step-link.active { color: #333333; font-weight: 400; }
+        .step-link.active::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: #333333; }
+        
+        /* Static Payment Option Containers to hold layout shape */
+        .payment-method-container { border: 1px solid #e0e0e0; border-radius: 4px; padding: 1.5rem; background-color: #ffffff; margin-bottom: 1.5rem; }
+        .payment-header { display: flex; align-items: flex-start; margin-bottom: 1rem; }
+        .payment-header input[type="radio"] { margin-top: 0.25rem; margin-right: 1rem; }
+    </style>
+</head>
+<body>
+
+    <header class="border-bottom py-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white container">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="40">
+                </a>
+                
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 me-4">
+                        <li class="nav-item"><a class="nav-link text-muted" href="index.html">Home</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="about.html">About</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="shop.html">Shop</a></li>
+                        <li class="nav-item text-muted p-2">|</li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="help.html">Help</a></li>
+                    </ul>
+                    <a href="cart.html" class="btn btn-dark">
+                        <i class="bi bi-cart3 me-2"></i>Your Cart
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        
+        <section class="row border-bottom pb-3 mb-5 text-center g-2">
+            <div class="col-4">
+                <a href="cart.html" class="step-link text-muted">1. Shopping Cart</a>
+            </div>
+            <div class="col-4">
+                <a href="shipping.html" class="step-link text-muted">2. Shipping Details</a>
+            </div>
+            <div class="col-4">
+                <span class="step-link active">3. Payment Options</span>
+            </div>
+        </section>
+
+        <form action="index.html" method="GET">
+            <div class="row g-5">
+                
+                <div class="col-lg-8">
+                    <h2 class="h4 fw-light text-dark mb-4 pb-2 border-bottom">Payment method</h2>
+                    
+                    <div class="payment-method-container">
+                        <div class="payment-header">
+                            <input class="form-check-input flex-shrink-0" type="radio" name="paymentMethod" id="payCreditCard" value="cc" checked>
+                            <label for="payCreditCard" class="small">
+                                <strong class="d-block text-dark mb-1">Credit Card</strong>
+                                <span class="text-muted d-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+                            </label>
+                        </div>
+                        
+                        <div class="row g-3 pt-2 ps-4">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19">
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <input type="text" class="form-control text-center" placeholder="MM / YY" maxlength="7">
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <input type="text" class="form-control text-center" placeholder="CVV" maxlength="4">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Card Holder Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-method-container">
+                        <div class="payment-header mb-0 align-items-center justify-content-between flex-wrap gap-3">
+                            <div class="d-flex align-items-start">
+                                <input class="form-check-input flex-shrink-0" type="radio" name="paymentMethod" id="payPaypal" value="paypal">
+                                <label for="payPaypal" class="small">
+                                    <strong class="d-block text-dark mb-1">Paypal</strong>
+                                    <span class="text-muted d-block me-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</span>
+                                </label>
+                            </div>
+                            <div class="pe-2 text-end flex-shrink-0">
+                                <span class="fw-bold text-primary" style="font-family: sans-serif; font-style: italic; letter-spacing: -1px;">PayPal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 pt-3">
+                        <button type="submit" class="btn btn-dark px-5 py-2">Pay Now</button>
+                        <a href="shipping.html" class="btn btn-light border text-muted px-5 py-2">Cancel</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="p-4 bg-light rounded border">
+                        <h3 class="h5 text-dark fw-light mb-4 text-uppercase tracking-wide">Summary</h3>
+                        
+                        <div class="d-flex flex-column gap-3 mb-4">
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="wireframe-img rounded flex-shrink-0" style="width: 65px; height: 65px;">
+                                    <span class="text-muted small">Icon</span>
+                                </div>
+                                <div class="small">
+                                    <span class="d-block text-dark fw-bold mb-1" style="font-size: 0.8rem;">PRODUCT NAME</span>
+                                    <span class="text-muted">$300</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="wireframe-img rounded flex-shrink-0" style="width: 65px; height: 65px;">
+                                    <span class="text-muted small">Icon</span>
+                                </div>
+                                <div class="small">
+                                    <span class="d-block text-dark fw-bold mb-1" style="font-size: 0.8rem;">PRODUCT NAME</span>
+                                    <span class="text-muted">$300</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-top pt-3 mb-4">
+                            <div class="d-flex justify-content-between align-items-center text-muted small">
+                                <span class="fw-bold" style="font-size: 0.75rem;">HAVE A VOUCHER?</span>
+                                <span>&#9662;</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">SUBTOTAL</span>
+                            <span class="text-dark fw-bold">$600</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">SHIPPING</span>
+                            <span class="text-dark fw-bold text-uppercase">Free</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 small">
+                            <span class="text-muted">TAXES</span>
+                            <span class="text-dark fw-bold">$13</span>
+                        </div>
+                        
+                        <hr class="my-3">
+                        
+                        <div class="d-flex justify-content-between align-items-end pt-2">
+                            <span class="h5 m-0 text-dark fw-light">TOTAL</span>
+                            <span class="h4 m-0 text-dark fw-bold">$613</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+    </main>
+
+  <footer class="border-top py-4 bg-white mt-5">
+        <div class="container d-flex flex-column align-items-center text-center gap-2 text-muted small">
+            
+            <div class="d-flex gap-3 text-uppercase justify-content-center flex-wrap">
+                <a href="index.html" class="text-muted text-decoration-none">Home</a> | 
+                <a href="about.html" class="text-muted text-decoration-none">About</a> | 
+                <a href="shop.html" class="text-muted text-decoration-none">Shop</a> | 
+                <a href="help.html" class="text-muted text-decoration-none">Help</a>
+            </div>
+            
+            <div class="mt-1">&copy; Aotearoa Adventure Gear</div>
+            
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
