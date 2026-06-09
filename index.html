@@ -68,26 +68,23 @@
          ============================================ -->
     <main class="container py-5">
         <section class="text-center hero-tagline mb-5">
-            <h1 class="mb-4 text-muted">Tagline describing your e-shop</h1>
+            <h1 class="mb-4 text-muted">Aotearoa Adventure Gear</h1>
+
+          <div class="position-relative px-0">
             
-            <div class="row justify-content-center mb-4 g-3">
-                <!-- Example Hero Images (Ref: image_0.png row below tagline) -->
-                <div class="col-6 col-md-3">
-                    <div class="wireframe-img ratio ratio-1x1 rounded p-3">
-                        <img src="assets/icon_placeholder.png" alt="Hero Featured 1" class="img-fluid p-5">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="wireframe-img ratio ratio-1x1 rounded p-3">
-                        <img src="assets/icon_placeholder.png" alt="Hero Featured 2" class="img-fluid p-5">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="wireframe-img ratio ratio-1x1 rounded p-3">
-                        <img src="assets/icon_placeholder.png" alt="Hero Featured 3" class="img-fluid p-5">
-                    </div>
-                </div>
-            </div>
+            <button onclick="moveCarousel(-1)" class="btn btn-dark position-absolute top-50 translate-middle-y z-3" style="left: 15px; width: 40px; height: 40px; padding: 0;">
+                &#9664;
+            </button>
+
+            <div class="row justify-content-center mb-4 g-3" id="featured-products-grid"></div>
+
+            <button onclick="moveCarousel(1)" class="btn btn-dark position-absolute top-50 translate-middle-y z-3" style="right: 15px; width: 40px; height: 40px; padding: 0;">
+                &#9654;
+            </button>
+            
+        </div>
+            
+           
             
             <a href="shop.html" class="btn btn-dark btn-lg">Shop Now</a>
         </section>
@@ -299,7 +296,16 @@
         <section class="text-center py-4 mb-5 text-muted">
             <h2 class="h1 font-weight-light mb-4">About Your Shop</h2>
             <div class="row justify-content-center">
-                <p class="col-md-9 lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                <p class="col-md-9 lead">Welcome to Aotearoa Adventure Gear, your destination for premium,
+                     rugged outdoor kit designed for the unpredictable New Zealand wilderness. 
+                    Founded by passionate local explorers, we equip you with dependable hardware
+                     built to withstand the elements—from the punishing winds of the Southern Alps
+                      to the dense bush of the Tararua Ranges. We balance absolute technical utility with 
+                      accessible pricing, offering field-tested expedition packs, 
+                      four-season tents, and outdoor essentials. Whether you’re setting off on a casual 
+                      weekend nature walk or a grueling multi-day alpine trek, gear up with confidence 
+                      and discover the true spirit of adventure.
+                </p>
             </div>
         </section>
         
@@ -317,7 +323,7 @@
                 <!-- Footer Logo & Address (Ref: image_0.png bottom left) -->
                 <div class="col-md-4">
                     <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="30" class="mb-3">
-                    <p>1717 Harrison St, San Francisco,<br> CA 94103, USA</p>
+                    <p>123 Sales Street, Auckland,<br> 94103, New Zealand</p>
                 </div>
 
                 <!-- Footer Menu Grid (Ref: image_0.png bottom right) -->
@@ -366,10 +372,10 @@
             </div>
 
             <!-- Sub-footer (Ref: image_0.png bottom copyright line) -->
-            <div class="border-top pt-3 text-start">
-                <i class="bi bi-copyright"></i> Your Company Name
+            <div class="border-top pt-3 text-center">
+              <span class="text-muted">&copy; Aotearoa Adventure Gear</span>
             </div>
-            
+          
         </div>
     </footer>
 
