@@ -6,6 +6,10 @@
     <title>Shopping Cart - Aotearoa Adventure Gear</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom-style.css" rel="stylesheet">
+     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/product-data.js"></script>
+    <script src="js/shoppingcart.js"></script>
     <style>
         body { font-family: 'Open Sans', sans-serif; color: #777; background-color: #ffffff; }
         .wireframe-img { background-color: #f8f8f8; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; }
@@ -60,48 +64,13 @@
             </div>
         </section>
 
-        <div class="row g-5">
+  <div class="row g-5">
             
             <div class="col-lg-8">
                 <h2 class="h4 fw-light text-dark mb-4 pb-2 border-bottom">Shopping Cart</h2>
                 
-                <div class="row align-items-center g-3 pb-4 mb-4 border-bottom">
-                    <div class="col-auto">
-                        <div class="wireframe-img rounded" style="width: 110px; height: 110px;">
-                            <img src="assets/icon_placeholder.png" width="40" alt="Product Image Thumbnail">
-                        </div>
+                <div id="dynamic-cart-items-container">
                     </div>
-                    <div class="col">
-                        <h4 class="text-dark h6 mb-1 text-uppercase tracking-wider">Product Title</h4>
-                        <p class="text-muted small mb-2 d-none d-md-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                        <span class="text-muted fw-bold">$300</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="input-group">
-                            <input type="number" class="form-control qty-input" value="1" min="1" required>
-                            <span class="input-group-text bg-white text-muted small">pcs</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center g-3 pb-4 mb-4 border-bottom">
-                    <div class="col-auto">
-                        <div class="wireframe-img rounded" style="width: 110px; height: 110px;">
-                            <img src="assets/icon_placeholder.png" width="40" alt="Product Image Thumbnail">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <h4 class="text-dark h6 mb-1 text-uppercase tracking-wider">Product Title</h4>
-                        <p class="text-muted small mb-2 d-none d-md-block">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
-                        <span class="text-muted fw-bold">$300</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="input-group">
-                            <input type="number" class="form-control qty-input" value="1" min="1" required>
-                            <span class="input-group-text bg-white text-muted small">pcs</span>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="d-flex gap-3 pt-3">
                     <a href="shipping.html" class="btn btn-dark px-5 py-2">Next</a>
@@ -122,22 +91,24 @@
                     
                     <div class="d-flex justify-content-between mb-2 small">
                         <span class="text-muted">SUBTOTAL</span>
-                        <span class="text-dark fw-bold">$600</span>
+                        <span class="text-dark fw-bold" id="cart-subtotal">$0.00</span>
                     </div>
+                    
                     <div class="d-flex justify-content-between mb-2 small">
                         <span class="text-muted">SHIPPING</span>
-                        <span class="text-dark fw-bold text-uppercase">Free</span>
+                        <span class="text-dark fw-bold text-uppercase" id="cart-shipping">$0.00</span>
                     </div>
+                    
                     <div class="d-flex justify-content-between mb-3 small">
-                        <span class="text-muted">TAXES</span>
-                        <span class="text-dark fw-bold">$13</span>
+                        <span class="text-muted">TAXES (15% GST)</span>
+                        <span class="text-dark fw-bold" id="cart-taxes">$0.00</span>
                     </div>
                     
                     <hr class="my-3">
                     
                     <div class="d-flex justify-content-between align-items-end pt-2">
                         <span class="h5 m-0 text-dark fw-light">TOTAL</span>
-                        <span class="h4 m-0 text-dark fw-bold">$613</span>
+                        <span class="h4 m-0 text-dark fw-bold" id="cart-grand-total">$0.00</span>
                     </div>
                 </div>
             </div>
@@ -160,7 +131,6 @@
         </div>
     </footer>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+   
 </body>
 </html>

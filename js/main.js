@@ -5,6 +5,7 @@ let startIndex = 0;
 document.addEventListener('DOMContentLoaded', () => {
     populateStaticHero();
     renderFeaturedCarousel();
+    populateMixedGrid();
 });
 
 // 1. POPULATE STATIC TOP ROW (Grabs the first 3 products directly from the start of the array)
@@ -64,6 +65,85 @@ function renderFeaturedCarousel() {
                             Details
                         </button>
                     </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// POPULATE THE MIXED LOWER GRID (Large Standout Card + 2x2 Sub-Grid)
+function populateMixedGrid() {
+    const largeTarget = document.getElementById('dynamic-large-product-target');
+    const subGridTarget = document.getElementById('dynamic-grid-products-target');
+    
+    if (!largeTarget || !subGridTarget) return;
+
+    // Wipe any old layout shells
+    largeTarget.innerHTML = '';
+    subGridTarget.innerHTML = '';
+
+    // RENDER THE LARGE PROMINENT PRODUCT (Index 0) ---
+    const largeProduct = products[0];
+    if (largeProduct) {
+        largeTarget.innerHTML = `
+            <div itemscope itemtype="https://schema.org/Product" class="card h-100 border-0 bg-transparent">
+                <div class="wireframe-img ratio ratio-1x1 rounded mb-3">
+                    <img itemprop="image" src="${largeProduct.image || 'assets/icon_placeholder_large.png'}" alt="${largeProduct.name}" class="img-fluid p-5">
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 itemprop="name" class="text-muted small m-0">${largeProduct.name.toUpperCase()}</h4>
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                            <span itemprop="priceCurrency" content="NZD">$</span>
+                            <span itemprop="price" content="${largeProduct.price}" class="h5">${largeProduct.price}</span>
+                        </div>
+                    </div>
+                    <div class="star-rating h5">
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star-fill filled"></i>
+                        <i class="bi bi-star-fill filled"></i>
+                    </div>
+                </div>
+                <button onclick="selectProduct('${largeProduct.id}')" class="btn btn-sm btn-outline-dark py-1 px-3 mt-3 align-self-start">
+                    Details
+                </button>
+            </div>
+        `;
+    }
+
+    // RENDER THE 2x2 SUB-GRID OF SMALLER PRODUCTS (Indices 1 through 4) ---
+    const subGridSelection = products.slice(0, 4);
+
+    subGridSelection.forEach(product => {
+        subGridTarget.innerHTML += `
+            <div class="col" itemscope itemtype="https://schema.org/Product">
+                <div class="card h-100 border-0 bg-transparent d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="wireframe-img ratio ratio-16x9 rounded mb-2">
+                            <img itemprop="image" src="${product.image || 'assets/icon_placeholder.png'}" alt="${product.name}" class="img-fluid p-3">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="small">
+                                <h4 itemprop="name" class="text-muted small m-0" style="font-size: 0.8rem;">${product.name.toUpperCase()}</h4>
+                                <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <span itemprop="priceCurrency" content="NZD">$</span>
+                                    <span itemprop="price" content="${product.price}" class="h6">${product.price}</span>
+                                </div>
+                            </div>
+                            <div class="star-rating" style="font-size: 0.8rem;">
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star-fill filled"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="selectProduct('${product.id}')" class="btn btn-sm btn-outline-dark py-0 px-2 align-self-start" style="font-size: 0.75rem;">
+                        Details
+                    </button>
                 </div>
             </div>
         `;

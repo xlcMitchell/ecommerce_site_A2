@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Aotearoa Adventure Gear</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="css/custom-style.css" rel="stylesheet">
     <style>
         body { font-family: 'Open Sans', sans-serif; color: #777; }
         .wireframe-img { background-color: #f8f8f8; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; }
         .star-rating { color: #ccc; font-size: 0.85rem; }
         .star-rating .filled { color: #f39c12; }
-        .category-card { text-align: center; }
+        .category-card { text-align: center; cursor: pointer; transition: transform 0.2s ease; }
+        .category-card:hover { transform: translateY(-3px); }
+        .clickable-product-row { cursor: pointer; transition: background-color 0.2s ease; border-radius: 8px; padding: 6px; }
+        .clickable-product-row:hover { background-color: #f8f9fa; }
     </style>
 </head>
 <body>
@@ -40,11 +44,11 @@
 
     <main class="container py-5">
         <section class="text-center mb-5">
-            <h1 class="display-5 mb-4 fw-light">Tagline describing your e-shop</h1>
+            <h1 class="display-5 mb-4 fw-light">Equip Your Next Kiwi Journey</h1>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form class="d-flex gap-2">
-                        <input class="form-control form-control-lg" type="search" placeholder="Search...">
+                    <form class="d-flex gap-2" id="shop-search-form">
+                        <input class="form-control form-control-lg" type="search" id="shop-search-input" placeholder="Search our premium gear...">
                         <button class="btn btn-dark px-4" type="submit">Submit</button>
                     </form>
                 </div>
@@ -53,41 +57,52 @@
 
         <hr class="my-5 opacity-25">
 
-        <section class="mb-5">
-            <h2 class="text-center fw-light mb-2">Featured Categories</h2>
-            <p class="text-center text-muted small mb-5 max-w-600 mx-auto">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+      <section class="mb-5">
+            <h2 class="text-center fw-light mb-2">Featured Highlights</h2>
+            <p class="text-center text-muted small mb-5 max-w-600 mx-auto">Discover our top-tier rugged gear configurations built to survive the elements.</p>
             
             <div class="row g-4 justify-content-center">
+                
                 <div class="col-6 col-md-3 category-card">
-                    <div class="wireframe-img ratio ratio-3x4 rounded mb-2"><img src="assets/icon_placeholder.png" class="img-fluid p-4" alt=""></div>
-                    <span class="text-uppercase small tracking-wider">Category</span>
+                    <div class="wireframe-img rounded mb-2 overflow-hidden" style="height: 250px; background-color: #f8f8f8; border: 1px solid #e0e0e0;">
+                        <img src="assets/tent.png" class="w-100 h-100" style="object-fit: cover;" alt="Premium Tents">
+                    </div>
+                    <span class="text-uppercase small tracking-wider fw-bold text-dark">Alpine Shelters</span>
                 </div>
+                
                 <div class="col-6 col-md-3 category-card">
-                    <div class="wireframe-img ratio ratio-3x4 rounded mb-2"><img src="assets/icon_placeholder.png" class="img-fluid p-4" alt=""></div>
-                    <span class="text-uppercase small tracking-wider">Category</span>
+                    <div class="wireframe-img rounded mb-2 overflow-hidden" style="height: 250px; background-color: #f8f8f8; border: 1px solid #e0e0e0;">
+                        <img src="assets/pack.png" class="w-100 h-100" style="object-fit: cover;" alt="Rugged Backpacks">
+                    </div>
+                    <span class="text-uppercase small tracking-wider fw-bold text-dark">Trek Packs</span>
                 </div>
+                
                 <div class="col-6 col-md-3 category-card">
-                    <div class="wireframe-img ratio ratio-3x4 rounded mb-2"><img src="assets/icon_placeholder.png" class="img-fluid p-4" alt=""></div>
-                    <span class="text-uppercase small tracking-wider">Category</span>
+                    <div class="wireframe-img rounded mb-2 overflow-hidden" style="height: 250px; background-color: #f8f8f8; border: 1px solid #e0e0e0;">
+                        <img src="assets/boots.png" class="w-100 h-100" style="object-fit: cover;" alt="All-Weather Gear">
+                    </div>
+                    <span class="text-uppercase small tracking-wider fw-bold text-dark">Technical Apparel</span>
                 </div>
+                
                 <div class="col-6 col-md-3">
-                    <div class="bg-dark text-white rounded d-flex flex-column align-items-center justify-content-center h-100 p-4 text-center min-vh-250">
+                    <div class="bg-dark text-white rounded d-flex flex-column align-items-center justify-content-center p-4 text-center" style="height: 250px;">
                         <h4 class="fw-light mb-3">Shop Now</h4>
-                        <a href="#product-listings" class="btn btn-outline-light btn-sm px-3">View All</a>
+                        <a href="#product-listings" class="btn btn-outline-light btn-sm px-3">View Below</a>
                     </div>
                 </div>
+                
             </div>
         </section>
 
         <hr class="my-5 opacity-25">
 
-        <section class="row g-4 align-items-center mb-5 bg-light rounded p-4 mx-1">
+        <section class="row g-4 align-items-center mb-5 bg-white rounded p-4 mx-1">
             <div class="col-md-4 text-center">
-                <img src="assets/icon_placeholder_large.png" alt="Promo Image" class="img-fluid" style="max-height: 120px;">
+                <img src="assets/logo.png" alt="Promo Image" class="img-fluid" style="max-height: 120px;">
             </div>
             <div class="col-md-8">
                 <h3 class="fw-light mb-2">Newsletter</h3>
-                <form class="d-flex gap-2">
+                <form class="d-flex gap-2" onsubmit="alert('Thanks for subscribing!'); this.reset(); return false;">
                     <input type="email" class="form-control" placeholder="Email Address" required>
                     <button type="submit" class="btn btn-secondary px-4">Subscribe</button>
                 </form>
@@ -97,80 +112,34 @@
         <section id="product-listings" class="row g-5">
             <div class="col-lg-4 text-start d-flex flex-column justify-content-between py-2">
                 <div>
-                    <h2 class="display-6 fw-normal text-dark mb-3">Header Regarding Your Product</h2>
-                    <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                    <h2 class="display-6 fw-normal text-dark mb-3" id="catalog-title">Our Full Catalog</h2>
+                    <p class="text-muted" id="catalog-subtitle">Showing all available rugged outdoor configurations engineered explicitly for New Zealand conditions.</p>
                 </div>
-                <button class="btn btn-dark btn-lg align-self-start mt-3">Browse All</button>
+                <button onclick="filterByCategory('All')" class="btn btn-dark btn-lg align-self-start mt-3">Browse All</button>
             </div>
 
             <div class="col-lg-8">
-                <div class="row row-cols-1 row-cols-sm-2 g-4">
-                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
-                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
-                        <div>
-                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
-                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="priceCurrency" content="NZD">$</span><span itemprop="price" content="300" class="fw-bold text-dark">300</span></div>
-                        </div>
+                <div class="row row-cols-1 row-cols-sm-2 g-4" id="dynamic-shop-grid">
                     </div>
-                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
-                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
-                        <div>
-                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
-                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
-                        </div>
-                    </div>
-                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
-                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
-                        <div>
-                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
-                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
-                        </div>
-                    </div>
-                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
-                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
-                        <div>
-                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
-                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
-                        </div>
-                    </div>
-                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
-                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
-                        <div>
-                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
-                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
-                        </div>
-                    </div>
-                    <div class="col d-flex gap-3 align-items-center" itemscope itemtype="https://schema.org/Product">
-                        <div class="wireframe-img rounded flex-shrink-0" style="width: 100px; height: 100px;"><img itemprop="image" src="assets/icon_placeholder.png" width="40" alt=""></div>
-                        <div>
-                            <h5 itemprop="name" class="text-muted small mb-1">PRODUCT NAME</h5>
-                            <div class="star-rating mb-1"><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star-fill filled"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price" class="fw-bold text-dark">$300</span></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
 
     <footer class="border-top py-4 bg-white mt-5">
-        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 text-muted small">
-            <div class="d-flex gap-3 text-uppercase">
+        <div class="container d-flex flex-column align-items-center text-center gap-2 text-muted small">
+            
+            <div class="d-flex gap-3 text-uppercase justify-content-center flex-wrap">
                 <a href="index.html" class="text-muted text-decoration-none">Home</a> | 
                 <a href="about.html" class="text-muted text-decoration-none">About</a> | 
                 <a href="shop.html" class="text-muted text-decoration-none">Shop</a> | 
                 <a href="help.html" class="text-muted text-decoration-none">Help</a>
             </div>
-            <div>&copy; Aotearoa Adventure Gear</div>
+            
+            <div class="mt-1">&copy; Aotearoa Adventure Gear</div>
+            
         </div>
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
+    <script src="js/product-data.js"></script> <script src="js/main.js"></script>         <script src="js/shop.js"></script>         </body>
 </html>
