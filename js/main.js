@@ -8,6 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
     populateMixedGrid();
 });
 
+// Listen for window resizing
+// This makes sure if someone shrinks their browser live on desktop, it responds immediately.
+window.addEventListener('resize', () => {
+    renderFeaturedCarousel();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const topAnchor = document.getElementById('floating-top-anchor');
+
+    if (topAnchor) {
+        // Listen to the browser's scroll action
+        window.addEventListener('scroll', () => {
+            // If user scrolls down more than 300 pixels, reveal the anchor
+            if (window.scrollY > 300) {
+                topAnchor.classList.remove('d-none');
+                topAnchor.classList.add('d-flex');
+            } else {
+                // Hide it when they are near the top of the Kiwi journey
+                topAnchor.classList.remove('d-flex');
+                topAnchor.classList.add('d-none');
+            }
+        });
+    }
+});
+
+
 // 1. POPULATE STATIC TOP ROW (Grabs the first 3 products directly from the start of the array)
 function populateStaticHero() {
     const staticContainer = document.getElementById('static-hero-grid');
@@ -38,19 +64,25 @@ function populateStaticHero() {
     });
 }
 
-// 2. RENDER FEATURED CAROUSEL (Renders a moving 2-card window using Microdata)
+// RENDER FEATURED CAROUSEL (Renders a moving 2-card window using Microdata)
 function renderFeaturedCarousel() {
     const gridContainer = document.getElementById('featured-products-grid');
     if (!gridContainer) return;
 
     gridContainer.innerHTML = '';
 
-    // Slice out a moving frame of 2 items based on current startIndex
-    const visibleProducts = products.slice(startIndex, startIndex + 2);
+    // DYNAMICALLY DETECT SCREEN WIDTH
+    // If the window width is less than 768px (Bootstrap's md breakpoint), show 1 item. Otherwise, show 2.
+    const isMobile = window.innerWidth < 768;
+    const itemsToShow = isMobile ? 1 : 2;
+
+    // Slice out a moving frame based on screen sizes
+    const visibleProducts = products.slice(startIndex, startIndex + itemsToShow);
 
     visibleProducts.forEach(product => {
+        //UPDATED CLASSES: Full width 'col-12' on mobile, 'col-md-5' on desktop
         gridContainer.innerHTML += `
-            <div class="col-md-5" itemscope itemtype="https://schema.org/Product">
+            <div class="col-12 col-md-5" itemscope itemtype="https://schema.org/Product">
                 <div class="card h-100 border-0 bg-transparent text-center">
                     <div class="wireframe-img ratio ratio-4x3 rounded mb-3">
                         <img itemprop="image" src="${product.image || 'assets/icon_placeholder_large.png'}" alt="${product.name}" class="img-fluid p-5">
@@ -70,6 +102,7 @@ function renderFeaturedCarousel() {
         `;
     });
 }
+
 
 // POPULATE THE MIXED LOWER GRID (Large Standout Card + 2x2 Sub-Grid)
 function populateMixedGrid() {
@@ -150,15 +183,19 @@ function populateMixedGrid() {
     });
 }
 
-// 3. MOVE CAROUSEL INDICES (Fires via the button onclick events)
+// MOVE CAROUSEL INDICES (Fires via the button onclick events)
 function moveCarousel(direction) {
     startIndex += direction;
 
-    // Safety checks to ensure it doesn't push past array limits
+    //Check current screen layout capacity dynamically
+    const isMobile = window.innerWidth < 768;
+    const itemsToShow = isMobile ? 1 : 2;
+
+    //Safety checks using the dynamic itemsToShow limit
     if (startIndex < 0) {
         startIndex = 0;
-    } else if (startIndex > products.length - 2) {
-        startIndex = products.length - 2; // Clamp it so a full window of 2 always renders
+    } else if (startIndex > products.length - itemsToShow) {
+        startIndex = products.length - itemsToShow; // Safely clamps based on visible screen window size
     }
 
     renderFeaturedCarousel();
