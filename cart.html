@@ -78,16 +78,33 @@
                 </div>
             </div>
 
+           <!--SIDEBAR CONTAINER-->
             <div class="col-lg-4">
                 <div class="p-4 bg-light rounded border">
                     <h3 class="h5 text-dark fw-light mb-4 text-uppercase tracking-wide">Summary</h3>
-                    
-                    <div class="mb-4">
-                        <label class="form-label text-uppercase fw-bold text-dark m-0" style="font-size: 0.75rem;">Enter Coupon Code</label>
-                        <div class="input-group mt-1">
-                            <input type="text" class="form-control bg-white text-uppercase" placeholder="CODE">
-                        </div>
-                    </div>
+             
+                    <!--PRODUCTS-->       
+                    <div id="sidebar-items-container" class="mb-4 d-none d-md-block">
+                     </div>
+            <!--COUPON DROP DOWN-->
+            <div class="mb-3 border-top pt-3">
+                  <div class="d-flex justify-content-between align-items-center" 
+                   data-bs-toggle="collapse" 
+                   data-bs-target="#couponCollapse" 
+                   style="cursor: pointer;">
+                  <span class="text-dark fw-bold text-uppercase" style="font-size: 0.85rem;">Have A Voucher?</span>
+                   <span class="text-dark lh-1" style="font-size: 1.1rem; padding-bottom: 2px;">&#9660;</span>
+            </div>
+
+            <div class="collapse" id="couponCollapse">
+                 <div class="pt-2">
+               <div class="input-group input-group-sm">
+                   <input type="text" class="form-control text-uppercase" placeholder="CODE">
+                   <button class="btn btn-outline-dark" type="button">Apply</button>
+               </div>
+           </div>
+        </div>
+     </div>
                     
                     <div class="d-flex justify-content-between mb-2 small">
                         <span class="text-muted">SUBTOTAL</span>

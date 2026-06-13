@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     displayCart();
+
+    //INTERCEPT FORM SUBMISSION FOR VALIDATION & ROUTING
+    const shippingForm = document.getElementById('shipping-form');
+    if (shippingForm) {
+        shippingForm.addEventListener('submit', (e) => {
+            //Stop the browser from reloading the page
+            e.preventDefault(); 
+
+            // Capture and save address fields if needed later
+            // const townCity = document.querySelector('input[placeholder="e.g. Palmerston North"]').value;
+            // localStorage.setItem('shippingCity', townCity);
+
+            // Smoothly route to  payment page
+            window.location.href = 'paymentdetail.html'; 
+        });
+    }
+
+    
 });
 
 function displayCart() {
@@ -66,6 +84,27 @@ function displayCart() {
         // If cartWrapper doesn't exist (Step 2 Shipping Page), we still need to calculate the subtotal from the cart array!
         cart.forEach(item => {
             subtotal += item.price * item.quantity;
+        });
+    }
+
+    const sidebarWrapper = document.getElementById('sidebar-items-container');
+    if (sidebarWrapper) {
+        sidebarWrapper.innerHTML = ''; // Wipe old wireframe blocks
+        
+        cart.forEach(item => {
+            sidebarWrapper.innerHTML += `
+                <div class="row align-items-center mb-3 g-2 pb-2 border-bottom-dashed">
+                    <div class="col-auto">
+                        <div class="wireframe-img rounded bg-white border" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                            <img src="${item.image || 'assets/icon_placeholder.png'}" alt="${item.name}" style="max-height: 80%; max-width: 80%; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div class="col ps-2">
+                        <h4 class="text-dark mb-0 text-uppercase fw-bold" style="font-size: 0.8rem; tracking-wide">${item.name}</h4>
+                        <div class="text-muted small">$${(item.price * item.quantity).toFixed(2)}</div>
+                    </div>
+                </div>
+            `;
         });
     }
 
