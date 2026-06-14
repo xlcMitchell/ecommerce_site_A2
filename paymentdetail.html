@@ -66,7 +66,7 @@
             </div>
         </section>
 
-        <form action="index.html" method="GET">
+        <form id="payment-form" novalidate>
             <div class="row g-5">
                 
                 <div class="col-lg-8">
@@ -77,22 +77,33 @@
                             <input class="form-check-input flex-shrink-0" type="radio" name="paymentMethod" id="payCreditCard" value="cc" checked>
                             <label for="payCreditCard" class="small">
                                 <strong class="d-block text-dark mb-1">Credit Card</strong>
-                                <span class="text-muted d-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+                                <span class="text-muted d-block">Enter your credit card details in the form below</span>
                             </label>
                         </div>
                         
                         <div class="row g-3 pt-2 ps-4">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19">
+                                <label for="card-number" class="form-label text-dark small fw-bold">Card Number</label>
+                                <input type="text" id="card-number" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" required>
+                                <div id="card-number-feedback" class="invalid-feedback">Please enter a valid 16-digit card number.</div>
                             </div>
+                            
                             <div class="col-6 col-md-3">
-                                <input type="text" class="form-control text-center" placeholder="MM / YY" maxlength="7">
+                                <label for="card-expiry" class="form-label text-dark small fw-bold">Expiry</label>
+                                <input type="text" id="card-expiry" class="form-control text-center" placeholder="MM / YY" maxlength="5" inputmode="numeric" required>
+                                <div id="card-expiry-feedback" class="invalid-feedback">Use MM/YY format.</div>
                             </div>
+                            
                             <div class="col-6 col-md-3">
-                                <input type="text" class="form-control text-center" placeholder="CVV" maxlength="4">
+                                <label for="card-cvv" class="form-label text-dark small fw-bold">CVV</label>
+                                <input type="text" id="card-cvv" class="form-control text-center" placeholder="CVV" maxlength="3" inputmode="numeric" required>
+                                <div id="card-cvv-feedback" class="invalid-feedback">Must be 3 digits.</div>
                             </div>
+                            
                             <div class="col-12">
-                                <input type="text" class="form-control" placeholder="Card Holder Name">
+                                <label for="card-name" class="form-label text-dark small fw-bold">Card Holder Name</label>
+                                <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
+                                <div id="card-name-feedback" class="invalid-feedback">Please enter the card holder name.</div>
                             </div>
                         </div>
                     </div>
@@ -102,8 +113,8 @@
                             <div class="d-flex align-items-start">
                                 <input class="form-check-input flex-shrink-0" type="radio" name="paymentMethod" id="payPaypal" value="paypal">
                                 <label for="payPaypal" class="small">
-                                    <strong class="d-block text-dark mb-1">Paypal</strong>
-                                    <span class="text-muted d-block me-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</span>
+                                    <strong class="d-block text-dark mb-1">PayPal</strong>
+                                    <span class="text-muted d-block me-3">Select this option to pay via PayPal</span>
                                 </label>
                             </div>
                             <div class="pe-2 text-end flex-shrink-0">
@@ -114,7 +125,7 @@
 
                     <div class="d-flex gap-3 pt-3">
                         <button type="submit" class="btn btn-dark px-5 py-2">Pay Now</button>
-                        <a href="shipping.html" class="btn btn-light border text-muted px-5 py-2">Cancel</a>
+                        <a href="shippingdetailpage.html" class="btn btn-light border text-muted px-5 py-2">Cancel</a>
                     </div>
                 </div>
 
@@ -122,34 +133,30 @@
                     <div class="p-4 bg-light rounded border">
                         <h3 class="h5 text-dark fw-light mb-4 text-uppercase tracking-wide">Summary</h3>
                         
+                        <div id="sidebar-items-container" class="mb-4 d-none d-md-block"></div>
+                        
+                        <div class="mb-3 border-top pt-3">
+                            <div class="d-flex justify-content-between align-items-center" 
+                                 data-bs-toggle="collapse" 
+                                 data-bs-target="#couponCollapse" 
+                                 style="cursor: pointer;">
+                                <span class="text-dark fw-bold text-uppercase" style="font-size: 0.85rem;">Have A Voucher?</span>
+                                <span class="text-dark lh-1" style="font-size: 1.1rem; padding-bottom: 2px;">&#9660;</span>
+                            </div>
 
-
-                         <!--PRODUCTS-->       
-                    <div id="sidebar-items-container" class="mb-4 d-none d-md-block">
-                     </div>
-                    <!--COUPON DROP DOWN-->
-                   <div class="mb-3 border-top pt-3">
-                       <div class="d-flex justify-content-between align-items-center" 
-                       data-bs-toggle="collapse" 
-                       data-bs-target="#couponCollapse" 
-                       style="cursor: pointer;">
-                       <span class="text-dark fw-bold text-uppercase" style="font-size: 0.85rem;">Have A Voucher?</span>
-                       <span class="text-dark lh-1" style="font-size: 1.1rem; padding-bottom: 2px;">&#9660;</span>
-                    </div>
-
-                    <div class="collapse" id="couponCollapse">
-                         <div class="pt-2">
-                    <div class="input-group input-group-sm">
-                       <input type="text" class="form-control text-uppercase" placeholder="CODE">
-                       <button class="btn btn-outline-dark" type="button">Apply</button>
-                   </div>
-                </div>
-            </div>
-        </div>
+                            <div class="collapse" id="couponCollapse">
+                                <div class="pt-2">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control text-uppercase" placeholder="CODE">
+                                        <button class="btn btn-outline-dark" type="button">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="d-flex justify-content-between mb-2 small">
                             <span class="text-muted">SUBTOTAL</span>
-                             <span class="text-dark fw-bold" id="cart-subtotal">$0.00</span>
+                            <span class="text-dark fw-bold" id="cart-subtotal">$0.00</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2 small">
                             <span class="text-muted">SHIPPING</span>
@@ -173,21 +180,17 @@
         </form>
     </main>
 
-  <footer class="border-top py-4 bg-white mt-5">
+    <footer class="border-top py-4 bg-white mt-5">
         <div class="container d-flex flex-column align-items-center text-center gap-2 text-muted small">
-            
             <div class="d-flex gap-3 text-uppercase justify-content-center flex-wrap">
                 <a href="index.html" class="text-muted text-decoration-none">Home</a> | 
                 <a href="about.html" class="text-muted text-decoration-none">About</a> | 
                 <a href="shop.html" class="text-muted text-decoration-none">Shop</a> | 
                 <a href="help.html" class="text-muted text-decoration-none">Help</a>
             </div>
-            
             <div class="mt-1">&copy; Aotearoa Adventure Gear</div>
-            
         </div>
     </footer>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

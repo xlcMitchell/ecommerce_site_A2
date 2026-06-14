@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Aotearoa Adventure Gear</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom-style.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <style>
+        body { font-family: 'Open Sans', sans-serif; color: #777; background-color: #ffffff; }
+        .success-icon { font-size: 4rem; color: #198754; }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header class="border-bottom py-2 bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light container">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-auto mx-lg-0" href="index.html">
+                    <img src="assets/logo.png" alt="Aotearoa Adventure Gear" height="40">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-auto py-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 p-5 rounded border bg-light shadow-sm">
+                
+                <div class="mb-4">
+                    <span class="success-icon">&checkmark;</span>
+                </div>
+                
+                <h1 class="h3 text-dark fw-light mb-3">Thank You for Your Order!</h1>
+                <p class="text-muted mb-4">Your payment has been successfully processed. An order confirmation email has been dispatched with your tracking coordinates.</p>
+                
+                <hr class="my-4">
+                
+                <p class="small text-muted mb-4">
+                    Redirecting you back to the home page in <strong id="countdown-timer" class="text-dark">5</strong> seconds...
+                </p>
+                
+                <a href="index.html" class="btn btn-dark px-5 py-2">Return Home Now</a>
+                
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-top py-4 bg-white mt-auto">
+        <div class="container text-center text-muted small">
+            <div>&copy; Aotearoa Adventure Gear</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let timeLeft = 5;
+            const timerElement = document.getElementById('countdown-timer');
+
+            localStorage.removeItem('shipping_firstName');
+            localStorage.removeItem('shipping_lastName');
+        
+
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                if (timerElement) {
+                    timerElement.textContent = timeLeft;
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'index.html'; // Execute redirect
+                }
+            }, 1000); // Fire every 1 second
+        });
+    </script>
+
+</body>
+</html>

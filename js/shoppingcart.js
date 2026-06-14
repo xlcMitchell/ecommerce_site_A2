@@ -1,21 +1,207 @@
 document.addEventListener('DOMContentLoaded', () => {
     displayCart();
 
-    //INTERCEPT FORM SUBMISSION FOR VALIDATION & ROUTING
+     // =========================================================================
+    // SHIPPING DETAILS FORM  VALIDATION START
+    // =========================================================================
     const shippingForm = document.getElementById('shipping-form');
     if (shippingForm) {
-        shippingForm.addEventListener('submit', (e) => {
-            //Stop the browser from reloading the page
-            e.preventDefault(); 
+        shippingForm.addEventListener('submit', function (e) {
+            // Stop the page from immediately reloading/switching pages!
+            e.preventDefault();
 
-            // Capture and save address fields if needed later
-            // const townCity = document.querySelector('input[placeholder="e.g. Palmerston North"]').value;
-            // localStorage.setItem('shippingCity', townCity);
+            //Grab all our input elements using our HTML IDs
+            const firstNameInput = document.getElementById('shipping-first-name');
+            const lastNameInput = document.getElementById('shipping-last-name');
+            const addressInput = document.getElementById('shipping-address');
+            const cityInput = document.getElementById('shipping-city');
+            const postcodeInput = document.getElementById('shipping-postcode');
+            const phoneInput = document.getElementById('shipping-phone');
 
-            // Smoothly route to  payment page
-            window.location.href = 'paymentdetail.html'; 
+            // Grab the feedback divs so we can change their text if needed
+            const postcodeFeedback = document.getElementById('postcode-feedback');
+            const phoneFeedback = document.getElementById('phone-feedback');
+
+            // Reset all validation styles before checking them again
+            const inputs = [firstNameInput, lastNameInput, addressInput, cityInput, postcodeInput, phoneInput];
+            inputs.forEach(input => input.classList.remove('is-invalid', 'is-valid'));
+
+            let isFormValid = true;
+
+            if (firstNameInput.value.trim().length === 0) { firstNameInput.classList.add('is-invalid'); isFormValid = false; }
+            else { firstNameInput.classList.add('is-valid'); }
+
+            if (lastNameInput.value.trim().length === 0) { lastNameInput.classList.add('is-invalid'); isFormValid = false; }
+            else { lastNameInput.classList.add('is-valid'); }
+
+            // --- STREET ADDRESS CHECK ---
+            if (addressInput.value.trim() === '') {
+                addressInput.classList.add('is-invalid');
+                isFormValid = false;
+            } else {
+                addressInput.classList.add('is-valid');
+            }
+
+            // --- CITY CHECK ---
+            if (cityInput.value.trim() === '') {
+                cityInput.classList.add('is-invalid');
+                isFormValid = false;
+            } else {
+                cityInput.classList.add('is-valid');
+            }
+
+            // --- POSTCODE CHECK ---
+            const postcodeVal = postcodeInput.value.trim();
+            if (postcodeVal === '') {
+                postcodeInput.classList.add('is-invalid');
+                postcodeFeedback.textContent = "Please enter your postcode.";
+                isFormValid = false;
+            } else if (!isValidNZPostcode(postcodeVal)) { 
+                postcodeInput.classList.add('is-invalid');
+                postcodeFeedback.textContent = "New Zealand postcodes must be exactly 4 digits.";
+                isFormValid = false;
+            } else {
+                postcodeInput.classList.add('is-valid');
+            }
+
+            // --- PHONE NUMBER CHECK ---
+            const phoneVal = phoneInput.value.trim();
+            
+            if (phoneVal === '') {
+                phoneInput.classList.add('is-invalid');
+                phoneFeedback.textContent = "Please enter your phone number.";
+                isFormValid = false;
+            } else if (!isValidPhoneNumber(phoneVal)) { 
+                phoneInput.classList.add('is-invalid');
+                phoneFeedback.textContent = "NZ numbers must be between 7 and 11 digits long.";
+                isFormValid = false;
+            } else {
+                // Additional prefix check
+                const cleanPhone = phoneVal.replace(/[\s\-\(\)\+]/g, '');
+                const validPrefix = /^(02|03|04|05|06|07|08|09|64)/.test(cleanPhone);
+                
+                if (!validPrefix) {
+                    phoneInput.classList.add('is-invalid');
+                    phoneFeedback.textContent = "Please enter a valid NZ prefix (e.g. 021 or 06).";
+                    isFormValid = false;
+                } else {
+                    phoneInput.classList.add('is-valid');
+                }
+            }
+
+            //Only proceed if every single field passed
+            if (isFormValid) {
+                // Save values to localStorage 
+                localStorage.setItem('shipping_firstName', firstNameInput.value);
+                localStorage.setItem('shipping_lastName', lastNameInput.value);
+                
+                // Proceed to payment page
+                window.location.href = 'paymentdetail.html';
+            }
         });
     }
+
+     // =========================================================================
+    // SHIPPING DETAILS FORM  VALIDATION END
+    // =========================================================================
+    
+
+    // =========================================================================
+    // PAYMENT FORM  VALIDATION START
+    // =========================================================================
+    const paymentForm = document.getElementById('payment-form');
+
+    if (paymentForm) {
+        paymentForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Stop immediate page switch
+
+            // Check which payment option radio button is selected
+            const isPaypalSelected = document.getElementById('payPaypal').checked;
+
+            //ROUTE  IMMEDIATELY IF PAYPAY IS SELECTED
+            if (isPaypalSelected) {
+                window.location.href = 'orderconfirmationpage.html';
+                return; // Exit the function immediately, skipping all CC checks
+            }
+
+            // If PayPal isn't selected, validate Credit Card inputs
+            const cardName = document.getElementById('card-name');
+            const cardNumber = document.getElementById('card-number');
+            const cardExpiry = document.getElementById('card-expiry');
+            const cardCvv = document.getElementById('card-cvv');
+
+            const cardNumberFeedback = document.getElementById('card-number-feedback');
+            const cardExpiryFeedback = document.getElementById('card-expiry-feedback');
+            const cardCvvFeedback = document.getElementById('card-cvv-feedback');
+
+            // Reset visual states
+            const inputs = [cardName, cardNumber, cardExpiry, cardCvv];
+            inputs.forEach(input => input.classList.remove('is-invalid', 'is-valid'));
+
+            let isFormValid = true;
+
+            // --- CARDHOLDER NAME CHECK ---
+            if (cardName.value.trim().length === 0) {
+                cardName.classList.add('is-invalid');
+                isFormValid = false;
+            } else {
+                cardName.classList.add('is-valid');
+            }
+
+            // --- CREDIT CARD NUMBER CHECK ---
+            const cardNoVal = cardNumber.value.trim();
+            if (cardNoVal === '') {
+                cardNumber.classList.add('is-invalid');
+                cardNumberFeedback.textContent = "Please enter your credit card number.";
+                isFormValid = false;
+            } else if (!isValidCreditCard(cardNoVal)) { 
+                cardNumber.classList.add('is-invalid');
+                cardNumberFeedback.textContent = "Credit card number must be exactly 16 numbers.";
+                isFormValid = false;
+            } else {
+                cardNumber.classList.add('is-valid');
+            }
+
+            // --- EXPIRY DATE CHECK (MM/YY) ---
+            const expiryVal = cardExpiry.value.trim();
+            const expiryRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/; 
+
+            if (expiryVal === '') {
+                cardExpiry.classList.add('is-invalid');
+                cardExpiryFeedback.textContent = "Please enter an expiry date.";
+                isFormValid = false;
+            } else if (!expiryRegex.test(expiryVal)) { 
+                cardExpiry.classList.add('is-invalid');
+                cardExpiryFeedback.textContent = "Format must be Month/Year (e.g., 12/28).";
+                isFormValid = false;
+            } else {
+                cardExpiry.classList.add('is-valid');
+            }
+
+            // --- CVV CHECK ---
+            const cvvVal = cardCvv.value.trim();
+            if (cvvVal === '') {
+                cardCvv.classList.add('is-invalid');
+                cardCvvFeedback.textContent = "Please enter your security code.";
+                isFormValid = false;
+            } else if (!isValidCVV(cvvVal)) { 
+                cardCvv.classList.add('is-invalid');
+                cardCvvFeedback.textContent = "CVV must be exactly 3 digits.";
+                isFormValid = false;
+            } else {
+                cardCvv.classList.add('is-valid');
+            }
+
+            // Success
+            if (isFormValid) {
+                window.location.href = 'orderconfirmationpage.html';
+            }
+        });
+    }
+
+      // =========================================================================
+    // PAYMENT FORM  VALIDATION END
+    // =========================================================================
 
     
 });
@@ -48,7 +234,7 @@ function displayCart() {
 
     let subtotal = 0;
 
-    // Only map items to HTML if the cart wrapper container actually exists (Step 1 Cart Page)
+    // Only map items to HTML if the cart wrapper container actually exists 
     if (cartWrapper) {
         cartWrapper.innerHTML = '';
         cart.forEach((item, index) => {
@@ -81,7 +267,7 @@ function displayCart() {
             `;
         });
     } else {
-        // If cartWrapper doesn't exist (Step 2 Shipping Page), we still need to calculate the subtotal from the cart array!
+        // If cartWrapper doesn't exist  we still need to calculate the subtotal from the cart array!
         cart.forEach(item => {
             subtotal += item.price * item.quantity;
         });
@@ -140,4 +326,43 @@ function removeFromCart(index) {
     cart.splice(index, 1);
     localStorage.setItem('userCart', JSON.stringify(cart));
     displayCart();
+}
+
+//DATA VALIDATION FUNCTIONS
+
+//email address validation
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+//NZ Post Code Check (Exactly 4 digits)
+function isValidNZPostcode(postcode) {
+    const postcodeRegex = /^[0-9]{4}$/;
+    return postcodeRegex.test(postcode);
+}
+
+//Credit Card Check (Exactly 16 digits)
+function isValidCreditCard(cardNumber) {
+    // Strip spaces or dashes the user might have typed
+    const cleanNumber = cardNumber.replace(/\s+/g, '').replace(/-/g, '');
+    return cleanNumber.length === 16 && !isNaN(cleanNumber);
+}
+
+//CVV Check (Exactly 3 digits)
+function isValidCVV(cvv) {
+    return /^[0-9]{3}$/.test(cvv);
+}
+
+function isValidPhoneNumber(phone) {
+    //Strip out common formatting characters: spaces, dashes, and parentheses
+    const cleanPhone = phone.replace(/[\s\-\(\)\+]/g, '');
+    
+    //Check if the remaining string consists entirely of numbers
+    if (isNaN(cleanPhone) || cleanPhone === '') {
+        return false;
+    }
+    
+    //Enforce length constraints (Standard NZ mobile/landline numbers range between 7 to 11 digits)
+    return cleanPhone.length >= 7 && cleanPhone.length <= 11;
 }
